@@ -1,0 +1,77 @@
+﻿<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gerador de Senhas</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="container">
+    <h1>Gerador de Senhas</h1>
+    <p>Configure os critérios e gere uma senha segura.</p>
+
+    <form id="passwordForm" class="form">
+      <label>
+        Quantidade (4-50)
+        <input id="qtde" type="number" min="4" max="50" value="16" required>
+      </label>
+
+      <div class="options">
+        <label><input id="maiusculas" type="checkbox" checked> Maiúsculas (A-Z)</label>
+        <label><input id="minusculas" type="checkbox" checked> Minúsculas (a-z)</label>
+        <label><input id="numeros" type="checkbox" checked> Números (0-9)</label>
+        <label><input id="simbolos" type="checkbox" checked> Símbolos (!@#$%...)</label>
+      </div>
+
+      <div class="buttons">
+        <button id="generateBtn" type="submit">Gerar Senha</button>
+        <button id="copyBtn" type="button" disabled>Copiar</button>
+      </div>
+
+      <div class="output">
+        <input id="result" type="text" readonly placeholder="A senha aparecerá aqui">
+      </div>
+    </form>
+  </main>
+
+  <script type="module">
+    import geraSenha from './geradores.js';
+
+    const form = document.getElementById('passwordForm');
+    const qtde = document.getElementById('qtde');
+    const maiusculas = document.getElementById('maiusculas');
+    const minusculas = document.getElementById('minusculas');
+    const numeros = document.getElementById('numeros');
+    const simbolos = document.getElementById('simbolos');
+    const result = document.getElementById('result');
+    const copyBtn = document.getElementById('copyBtn');
+
+    form.addEventListener('submit', (event) => {
+      event.preventDefault();
+      const senha = geraSenha(
+        qtde.value,
+        maiusculas.checked,
+        minusculas.checked,
+        numeros.checked,
+        simbolos.checked
+      );
+      result.value = senha;
+      copyBtn.disabled = !senha;
+    });
+
+    copyBtn.addEventListener('click', async () => {
+      if (!result.value) return;
+      try {
+        await navigator.clipboard.writeText(result.value);
+        copyBtn.textContent = 'Copiado!';
+        setTimeout(() => {
+          copyBtn.textContent = 'Copiar';
+        }, 1300);
+      } catch {
+        alert('Não foi possível copiar automaticamente. Selecione e copie manualmente.');
+      }
+    });
+  </script>
+</body>
+</html>

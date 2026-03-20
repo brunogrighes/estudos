@@ -1,0 +1,122 @@
+﻿:root {
+  --bg: #0b1221;
+  --card: #161f32;
+  --text: #e2e8f0;
+  --muted: #94a3b8;
+  --primary: #38bdf8;
+  --primary-dark: #0ea5e9;
+  --border: #334155;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, #071012 0%, #0b1221 100%);
+  color: var(--text);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.container {
+  width: min(560px, 100%);
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 1.2rem 1.5rem 1.3rem;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.45);
+}
+
+h1 {
+  margin: 0 0 0.35rem;
+  font-size: 1.75rem;
+}
+
+p {
+  margin-top: 0;
+  color: var(--muted);
+}
+
+.form label {
+  display: block;
+  margin: 0.8rem 0 0.35rem;
+  font-weight: 600;
+}
+
+.form input[type='number'],
+.form input[type='text'] {
+  width: 100%;
+  padding: 0.6rem 0.75rem;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: #111827;
+  color: var(--text);
+}
+
+.options {
+  margin-top: 0.9rem;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.6rem;
+}
+
+.options label {
+  font-weight: 500;
+  color: var(--muted);
+}
+
+.options input {
+  margin-right: 0.55rem;
+}
+
+.buttons {
+  margin-top: 1rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.65rem;
+}
+
+button {
+  border: 0;
+  border-radius: 8px;
+  padding: 0.68rem;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 0.15s ease, filter 0.2s ease;
+}
+
+button:active {
+  transform: scale(0.98);
+}
+
+#generateBtn {
+  background: linear-gradient(90deg, var(--primary), var(--primary-dark));
+  color: #0f172a;
+}
+
+#copyBtn {
+  background: #334155;
+  color: var(--text);
+}
+
+#copyBtn:disabled {
+  opacity: 0.48;
+  cursor: not-allowed;
+}
+
+.output {
+  margin-top: 1.1rem;
+}
+
+.output input {
+  width: 100%;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+}
